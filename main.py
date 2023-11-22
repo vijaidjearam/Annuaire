@@ -14,8 +14,8 @@ def get_json(servID):
         'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8',
         'Connection': 'keep-alive',
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        'Origin': 'http://annuaires.univ-reims.fr',
-        'Referer': 'http://annuaires.univ-reims.fr/',
+        'Origin': 'https://annuaires.univ-reims.fr',
+        'Referer': 'https://annuaires.univ-reims.fr/',
         'Sec-Fetch-Dest': 'empty',
         'Sec-Fetch-Mode': 'cors',
         'Sec-Fetch-Site': 'same-origin',
@@ -30,7 +30,7 @@ def get_json(servID):
         's': 'IUT TR|'+servID,
         'e': 'n',
     }
-    response = requests.post('http://annuaires.univ-reims.fr/ws/searchService.php', headers=headers, data=data, verify=False)
+    response = requests.post('https://annuaires.univ-reims.fr/ws/searchService.php', headers=headers, data=data, verify=False)
     r = response.text
     content = json.loads(r)
     #response = pyfetch('https://annuaires.univ-reims.fr/ws/searchService.php', method="POST", headers=headers, data=data)
