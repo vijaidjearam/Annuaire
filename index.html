@@ -1,34 +1,26 @@
+<!DOCTYPE html>
 <html>
-  <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <title>🦜 Polyglot - Piratical PyScript</title>
+      <script type="module" src="https://pyscript.net/releases/2023.11.1/core.js"></script>
+  </head>
   <body>
-    Hello, world!
-    <div id="outputDiv" class="font-mono"></div>
-    <py-script>
-fetch("https://annuaires.univ-reims.fr/ws/searchService.php",{
-  method: "POST",
-  headers: {
-    'Accept': 'application/json, text/javascript, */*; q=0.01',
-    'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8',
-    'Connection': 'keep-alive',
-    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    'Origin': 'https://annuaires.univ-reims.fr',
-    'Referer': 'https://annuaires.univ-reims.fr/',
-    'Sec-Fetch-Dest': 'empty',
-    'Sec-Fetch-Mode': 'cors',
-    'Sec-Fetch-Site': 'same-origin',
-    'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36',
-    'X-Requested-With': 'XMLHttpRequest',
-    'sec-ch-ua': '"Google Chrome";v="119", "Chromium";v="119", "Not?A_Brand";v="24"',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-platform': '"Android"',
-  },
-  body: JSON.stringify({
-    's': 'IUT TR|Tous',
-    'e': 'n'
-  })
-})
-pyscript.write("outputDiv", str(print(response)))
-    </py-script>
+    <h1>Polyglot 🦜 💬 🇬🇧 ➡️ 🏴‍☠️</h1>
+    <p>Translate English into Pirate speak...</p>
+      <select name="Service" id="Service" value="Tous">
+        <option value="Tous">Tous</option>
+        <option value="SECRET.">SECRETARIAT</option>
+        <option value="test">test</option>
+        <option value="golang">Golang</option>
+        <option value="python">Python</option>
+        <option value="c#">C#</option>
+        <option value="C++">C++</option>
+        <option value="erlang">Erlang</option>
+      </select>
+      <button py-click="submit">Submit</button>
+      <div id="output"></div>
+      <script type="py" src="./main.py" config="./pyscript.json"></script>
   </body>
 </html>
