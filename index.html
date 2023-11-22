@@ -10,7 +10,7 @@
     <h1>Polyglot 🦜 💬 🇬🇧 ➡️ 🏴‍☠️</h1>
     <p>Translate English into Pirate speak...</p>
        <label for="lang">Language</label>
-      <select name="languages" id="lang">
+      <select name="languages" id="lang" value="javascript">
         <option value="javascript">JavaScript</option>
         <option value="php">PHP</option>
         <option value="java">Java</option>
@@ -21,7 +21,7 @@
         <option value="erlang">Erlang</option>
       </select>
       <button py-click="submit">Submit</button>
-      <div id="output1"></div>
+      <div id="output"></div>
       <script type="py" src="./main.py" config="./pyscript.json"></script>
   </body>
 </html>
