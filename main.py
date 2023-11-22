@@ -30,7 +30,7 @@ def get_json(servID):
         'e': 'n',
     }
     print (data)
-    response = requests.post('https://annuaires.univ-reims.fr/ws/searchService.php', headers=headers, data=data)
+    response = requests.post('https://annuaires.univ-reims.fr/ws/searchService.php', headers=headers, data=data, verify=False)
     r = response.text
     content = json.loads(r)
     content = content["entry"]
