@@ -4,8 +4,7 @@ from pyscript import document
 
 
 def submit(event):
-    lang = document.querySelector("#Service")
-    language = lang.value
+    service = document.querySelector("#Service")
     output_div = document.querySelector("#output")
-    output_div.innerText = language
+    output_div.innerText = service.value
 
