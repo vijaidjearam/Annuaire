@@ -1,6 +1,7 @@
 import requests
 import json
 import pandas as pd
+import os
 from reportlab.platypus import SimpleDocTemplate
 from reportlab.lib.pagesizes import letter, landscape
 import numpy as np
@@ -45,9 +46,11 @@ def sortdata(content):
     return df2
 
 def generatepdf(dataframe):
-    fileName = 'Annuaire.pdf'
+    outfilename = 'Annuaire.pdf'
+    outfiledir = 'c:\\temp'
+    outfilepath = os.path.join( outfiledir, outfilename )
     pdf = SimpleDocTemplate(
-        fileName,
+        outfilepath,
         pagesize=landscape(letter)
     )
     from reportlab.platypus import Table
