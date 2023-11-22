@@ -28,10 +28,7 @@ fetch("https://annuaires.univ-reims.fr/ws/searchService.php",{
     'e': 'n'
   })
 })
-.then(response => response.json()) # convert the response body to JSON
-.then(data => print(data)) # print the data
-.catch(error => print(error)) # handle any errors
-pyscript.write("outputDiv", str(print(data)))
+pyscript.write("outputDiv", str(print(response)))
     </py-script>
   </body>
 </html>
