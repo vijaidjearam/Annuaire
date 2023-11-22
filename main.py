@@ -5,6 +5,7 @@ import os
 from reportlab.platypus import SimpleDocTemplate
 from reportlab.lib.pagesizes import letter, landscape
 import numpy as np
+from pyodide.http import pyfetch, FetchResponse
 from pyscript import document
 
 def get_json(servID):
@@ -29,10 +30,12 @@ def get_json(servID):
         's': 'IUT TR|'+servID,
         'e': 'n',
     }
-    print (data)
-    response = requests.post('https://annuaires.univ-reims.fr/ws/searchService.php', headers=headers, data=data, verify=False)
-    r = response.text
-    content = json.loads(r)
+    #response = requests.post('https://annuaires.univ-reims.fr/ws/searchService.php', headers=headers, data=data, verify=False)
+    #r = response.text
+    #content = json.loads(r)
+    response = pyfetch('https://annuaires.univ-reims.fr/ws/searchService.php', method="POST", headers=headers, data=data)
+    content =  response.json()
+    content = json.loads(content)
     content = content["entry"]
     return content
 
