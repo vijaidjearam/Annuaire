@@ -5,49 +5,33 @@
     Hello, world!
     <div id="outputDiv" class="font-mono"></div>
     <py-script>
-from js import XMLHttpRequest, Blob
-import json
-
-headers = {
-  'Accept': 'application/json, text/javascript, */*; q=0.01',
-  'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8',
-  'Connection': 'keep-alive',
-  'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-  'Origin': 'https://annuaires.univ-reims.fr',
-  'Referer': 'https://annuaires.univ-reims.fr/',
-  'Sec-Fetch-Dest': 'empty',
-  'Sec-Fetch-Mode': 'cors',
-  'Sec-Fetch-Site': 'same-origin',
-  'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36',
-  'X-Requested-With': 'XMLHttpRequest',
-  'sec-ch-ua': '"Google Chrome";v="119", "Chromium";v="119", "Not?A_Brand";v="24"',
-  'sec-ch-ua-mobile': '?1',
-  'sec-ch-ua-platform': '"Android"',
-}
-
-data = {
-  's': 'IUT TR|Tous',
-  'e': 'n',
-}
-
-url = "https://annuaires.univ-reims.fr/ws/searchService.php"
-req = XMLHttpRequest.new()
-req.open("POST", url, True)
-req.setRequestHeader('Accept', 'application/json, text/javascript, */*; q=0.01')
-req.setRequestHeader('Accept-Language', 'en-US,en;q=0.9,fr;q=0.8')
-req.setRequestHeader('Connection', 'keep-alive')
-req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
-req.setRequestHeader('Origin', 'https,//annuaires.univ-reims.fr')
-req.setRequestHeader('Referer', 'https,//annuaires.univ-reims.fr/')
-req.setRequestHeader('Sec-Fetch-Dest', 'empty')
-req.setRequestHeader('User-Agent', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36')
-req.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
-req.setRequestHeader('sec-ch-ua', '"Google Chrome";v="119", "Chromium";v="119", "Not?A_Brand";v="24"')
-req.setRequestHeader('sec-ch-ua-mobile', '?1')
-req.setRequestHeader('sec-ch-ua-platform', '"Android"')
-blob = Blob.new([json.dumps(data)], {type : 'application/json'})
-req.send(blob)
-pyscript.write("outputDiv", str(req.response))
+fetch("https://annuaires.univ-reims.fr/ws/searchService.php",{
+  method: "POST",
+  headers: {
+    'Accept': 'application/json, text/javascript, */*; q=0.01',
+    'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8',
+    'Connection': 'keep-alive',
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'Origin': 'https://annuaires.univ-reims.fr',
+    'Referer': 'https://annuaires.univ-reims.fr/',
+    'Sec-Fetch-Dest': 'empty',
+    'Sec-Fetch-Mode': 'cors',
+    'Sec-Fetch-Site': 'same-origin',
+    'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36',
+    'X-Requested-With': 'XMLHttpRequest',
+    'sec-ch-ua': '"Google Chrome";v="119", "Chromium";v="119", "Not?A_Brand";v="24"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-platform': '"Android"',
+  },
+  body: JSON.stringify({
+    's': 'IUT TR|Tous',
+    'e': 'n'
+  })
+})
+.then(response => response.json()) # convert the response body to JSON
+.then(data => print(data)) # print the data
+.catch(error => print(error)) # handle any errors
+pyscript.write("outputDiv", str(print(data)))
     </py-script>
   </body>
 </html>
